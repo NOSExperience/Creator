@@ -21,9 +21,15 @@
 			foreach($dir as $i){
 				echo 'taken.add("' . $i . '");' . "\n";
 			}
-			echo "if(taken.has(document.forms['createForm']['name'].value)){ 
-			document.getElementById('error').innerHTML = '<p>This name is already taken!</p>'; 
-			return false;
+			echo "
+			var name = document.forms['createForm']['name'].value;
+			name = name.toLowerCase();
+			name = name.trim();
+			name = name.replace(/\s/g, '');
+			console.log(name);
+			if(taken.has(name + '.xml')) { 
+				document.getElementById('error').innerHTML = '<p>This name is already taken!</p>'; 
+				return false;
 			}";
 		}
 	}
@@ -31,20 +37,23 @@
 	function isEdit(){
 		if(isset($_GET['edit'])){
 			$xml = simplexml_load_file('xml/' . generateRegistryName($_GET['edit'] . '.xml'));
-			print_r($xml->children());
-			/*
-			if($xml->owner == $_SESSION['user']){
+			//print_r($xml->children()->getName());
+			if($xml->children()->children()->owner == $_SESSION['user']){
 				echo "
 				function isEdit(){
-					document.getElementById('name').value = '" . $xml->englishname . "';
-					document.getElementById('type').value = '" . $xml . "';
+					document.getElementById('name').value = '" . $xml->children()->children()->englishname . "';
+					document.getElementById('type').value = '" . $xml->children()->getName() . "';
+					contentTypeMenu();
+					if(document.getElementById('type').options[document.getElementById('type').selectedIndex].value == 'block') {
+						document.getElementById('material').value = '" . $xml->children()->children()->material . "';
+					}
+					document.getElementById('inventory').value = '" . $xml->children()->children()->inventorytab . "';
+					document.getElementById('submit').value = 'Update!';
 				}
-				window.onload = isEdit();
-				";
+				window.onload = isEdit();";
 			}else{
 				return false;
 			}
-			* */
 		}
 	}
 ?>
@@ -83,7 +92,7 @@
 					<option value = 'brewing'>Brewing</option>
 					<option value = 'materials'>Materials</option>
 				</select><br>
-				 <input class = 'top-margin-medium' name = 'submit' type = 'submit' value = 'Create!'>
+				 <input class = 'top-margin-medium' name = 'submit' type = 'submit' value = 'Create!' id = 'submit'>
 			</form>
 			
 		</div>
@@ -93,7 +102,7 @@
 				if(type.options[type.selectedIndex].value == 'item'){
 						document.getElementById('material-fill').innerHTML = "";
 				} else if(type.options[type.selectedIndex].value == 'block'){
-					document.getElementById('material-fill').innerHTML = "<select class = 'top-margin-small' name = 'material'><option value='grass'>Grass</option><option value='ground'>Ground</option><option value='wood'>Wood</option><option value='rock'>Rock</option><option value='iron'>Iron</option><option value='anvil'>Anvil</option><option value='water'>Water</option><option value='lava'>Lava</option><option value='leaves'>Leaves</option><option value='plants'>Plants</option> <option value='vine'>Vine</option><option value='sponge'>Sponge</option><option value='cloth'>Cloth</option><option value='fire'>Fire</option><option value='sand'>Sand</option><option value='circuits'>Circuits</option> <option value='materialCarpet'>Carpet Material</option> <option value='glass'>Glass</option><option value='redstoneLight'>Redstone Light</option> <option value='tnt'>Tnt</option><option value='coral'>Coral</option><option value='ice'>Ice</option><option value='snow'>Snow</option><option value='craftedSnow'>Snow Crafted</option><option value='cactus'>Cactus</option><option value='clay'>Clay</option><option value='pumpkin'>Pumpkin</option><option value='dragonEgg'>Dragon Egg</option><option value='portal'>Portal</option><option value='cake'>Cake</option><option value='web'>Web</option><option value='piston'>Piston</option></select>";
+					document.getElementById('material-fill').innerHTML = "<select id = 'material' class = 'top-margin-small' name = 'material'><option value='grass'>Grass</option><option value='ground'>Ground</option><option value='wood'>Wood</option><option value='rock'>Rock</option><option value='iron'>Iron</option><option value='anvil'>Anvil</option><option value='water'>Water</option><option value='lava'>Lava</option><option value='leaves'>Leaves</option><option value='plants'>Plants</option> <option value='vine'>Vine</option><option value='sponge'>Sponge</option><option value='cloth'>Cloth</option><option value='fire'>Fire</option><option value='sand'>Sand</option><option value='circuits'>Circuits</option> <option value='materialCarpet'>Carpet Material</option> <option value='glass'>Glass</option><option value='redstoneLight'>Redstone Light</option> <option value='tnt'>Tnt</option><option value='coral'>Coral</option><option value='ice'>Ice</option><option value='snow'>Snow</option><option value='craftedSnow'>Snow Crafted</option><option value='cactus'>Cactus</option><option value='clay'>Clay</option><option value='pumpkin'>Pumpkin</option><option value='dragonEgg'>Dragon Egg</option><option value='portal'>Portal</option><option value='cake'>Cake</option><option value='web'>Web</option><option value='piston'>Piston</option></select>";
 				}
 			}
 			function checkForm(){

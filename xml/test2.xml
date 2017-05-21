@@ -1,8 +1,8 @@
 <?xml version = '1.0'?>
 <xml>
 	<block>
-		<registryname>test</registryname>
-		<englishname>test</englishname>
+		<registryname>test2</registryname>
+		<englishname>test2</englishname>
 		<inventorytab>block</inventorytab>
 		<material>rock</material>
 		<owner>admin</owner>
