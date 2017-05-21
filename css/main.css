@@ -1,0 +1,114 @@
+a {
+	text-decoration: none;
+	padding: 0;
+}
+
+.ui-coverflow-wrapper{
+	height:400px;
+	margin-top: 100px;
+}
+
+.ui-state-active{
+	border:0px;
+}
+
+.fancydie{
+	text-align: center;
+	background-color: gray;
+	border-color: red;
+	border-style: solid;
+}
+
+.btn {
+	margin: 0.5%;
+	padding: 1% 2% 1% 2%;
+	border-radius: 2px;
+	text-align: center;
+	
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-neutral {
+	background-color: #F3F3F3;
+	color: #222;
+}
+
+.btn-neutral:focus, .btn-neutral:hover {
+	margin-top: -0.0025%;
+	border-bottom: 2px solid darkgrey;
+	background-color: #F0F0F0;
+	color: #000;
+}
+
+.btn-neutral:active {
+	margin-top: 0.5025%;
+	border-bottom: 3px solid darkgrey;
+	background-color: #F0F0F0;
+	color: #000;
+}
+
+#logout{
+	position: fixed;
+	top: 2%;
+	width: 5%;
+	right: 2.5%;
+}
+
+.center-box{
+	background-color: rgba(0.0, 0.0, 0.0, 0.02);
+	border: solid 1px linear-gradient(to right, #FFFFFF, #BBBBBB);
+	text-align: center;
+	margin-left: 25%;
+	width: 50%;
+	padding: 1.25%;
+}
+
+body{
+	font-family: Arial, Helvitca, sans-serif;
+}
+
+p {
+	margin: 1%;
+}
+
+.divider {
+	margin: 2px 3% 1.5% 2px;
+	background: linear-gradient(to right, rgba(1.0, 1.0, 1.0, 0.0), rgba(0.0, 0.0, 0.0, 1.0), rgba(0.0, 0.0, 0.0, 1.0), rgba(1.0, 1.0, 1.0, 0.0));
+	padding: 0.05%;
+}
+
+.header{
+	font-size: 25px;
+}
+
+.small{
+	font-size: 80%;
+}
+
+.large{
+	font-size: 240%;
+}
+
+.input-pretty {
+	font-family: inherit;
+	font-size: 16px;
+	padding: 0.5%;
+}
+
+.para-box{
+	width: 40%;
+	height: 5%;
+	resize: none;
+	font-family: inherit;
+}
+
+.top-margin-small {
+	margin-top: 1%;
+}
+
+.top-margin-medium {
+	margin-top: 3%;
+}
